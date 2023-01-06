@@ -24,9 +24,8 @@ steps:
   inputs:
     SonarCloud: 'SonarCloud'
     organization: 'guillermoechague'
-    projectKey: 'guillermoechague_tarea-devops-foundation'
-    projectName: 'tarea-devops-foundation'
-    projectVersion: '2.6.1'
+    projectKey: guillermoechague_tarea-devops-foundation
+    projectName: tarea-devops-foundation
   displayName: Prepare SonarCloud Analysis
 
 - task: Gradle@3
@@ -40,4 +39,5 @@ steps:
     sqGradlePluginVersionChoice: 'specify'
     sonarQubeGradlePluginVersion: '3.3'
     spotBugsAnalysis: false
+  displayName: SonarCloud Analysis
 
