@@ -1,7 +1,7 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
 - feature-ms-guillermoEchague-DevOpsConfigurationJava
@@ -10,10 +10,55 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: Gradle@3
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: false
+    spotBugsAnalysis: false
+  displayName: Build Project
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: 'guillermoechague'
+    projectKey: 'guillermoechague_tarea-devops-foundation'
+    projectName: 'tarea-devops-foundation'
+  displayName: Prepare SonarCloud Analysis
+
+- task: Gradle@3
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: true
+    sqGradlePluginVersionChoice: 'specify'
+    sonarQubeGradlePluginVersion: '2.6.1'
+    spotBugsAnalysis: false
+  displayName: SonarCloud Analysis
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker-tarea'
+    command: 'login'
+  displayName: Docker Login
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker-tarea'
+    repository: 'tarea-devops-usach'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+  displayName: Docker Build Image
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker-tarea'
+    repository: 'tarea-devops-usach'
+    command: 'push'
+  displayName: Docker Push
