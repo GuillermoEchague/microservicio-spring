@@ -60,7 +60,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'docker-tarea'
-    repository: 'tarea-devops-usach'
+    repository: 'echaguiller/tarea-devops'
     command: 'build'
     Dockerfile: '**/Dockerfile'
   displayName: Docker Build Image
@@ -68,7 +68,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'docker-tarea'
-    repository: 'tarea-devops-usach'
+    repository: 'echaguiller/tarea-devops'
     command: 'push'
   displayName: Docker Push
 
