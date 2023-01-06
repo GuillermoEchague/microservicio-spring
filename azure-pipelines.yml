@@ -33,6 +33,7 @@ steps:
       sonar.projectKey=guillermoechague_tarea-devops-foundation
       sonar.projectName=tarea-devops-foundation
   displayName: Prepare SonarCloud Analysis
+
 - task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
@@ -44,21 +45,11 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: true
     sqMavenPluginVersionChoice: 'latest'
+  displayName: SonarCloud Analysis
+
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
-- task: Gradle@3
-  inputs:
-    gradleWrapperFile: 'gradlew'
-    tasks: 'sonarCloud'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    sonarQubeRunAnalysis: true
-    sqGradlePluginVersionChoice: 'specify'
-    sonarQubeGradlePluginVersion: '2.6.1'
-    spotBugsAnalysis: false
-  displayName: SonarCloud Analysis
 
 - task: Docker@2
   inputs:
