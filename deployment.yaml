@@ -4,6 +4,7 @@ metadata:
   name: spring-boot-k8s
   labels:
     app: tarea-devops
+  namespace: spring
 spec:
   replicas: 1
   selector:
@@ -13,9 +14,26 @@ spec:
     metadata:
       labels:
         app: tarea-devops
+      
     spec:
       containers:
       - name: tarea-devops
         image: echaguiller/tarea-devops:4
         ports:
         - containerPort: 8080
+
+---
+
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: mi-servicio-spring
+  namespace: spring  
+spec:
+  selector:
+    app: tarea-devops
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
