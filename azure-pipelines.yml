@@ -81,6 +81,12 @@ steps:
   inputs:
     connectionType: 'None'
     namespace: 'default'
+    command: 'login'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'None'
+    namespace: 'default'
     command: 'apply'
     arguments: '-f deployment.yaml'
     secretType: 'dockerRegistry'
