@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: tarea-devops
-        image: echaguiller/tarea-devops:latest
+        image: echaguiller/tarea-devops:4
         ports:
-        - containerPort: 8080
+        - containerPort: 8085
