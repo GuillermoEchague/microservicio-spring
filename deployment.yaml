@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-k8s
+  labels:
+    app: tarea-devops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tarea-devops
+  template:
+    metadata:
+      labels:
+        app: tarea-devops
+    spec:
+      containers:
+      - name: tarea-devops
+        image: echaguiller/tarea-devops:latest
+        ports:
+        - containerPort: 8080

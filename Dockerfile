@@ -1,9 +1,9 @@
 FROM openjdk:11-jre
 
-EXPOSE 8085
+EXPOSE 8080
 
-ADD build/libs/testing-web-0.0.1-SNAPSHOT.jar /app/microservicio-spring-2.6.3.jar
+ADD build/libs/testing-web-0.0.1-SNAPSHOT.jar /app/pet-clinic-2.6.0.jar
 
 WORKDIR /app
 
-CMD java -jar microservicio-spring-2.6.3.jar
+CMD java -jar pet-clinic-2.6.0.jar
