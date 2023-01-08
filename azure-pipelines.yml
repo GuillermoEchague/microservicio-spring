@@ -84,5 +84,4 @@ steps:
     command: 'apply'
     arguments: '-f deployment.yaml'
     secretType: 'dockerRegistry'
-    containerRegistryType: 'Container Registry'
-    dockerRegistryEndpoint: 'docker-tarea'
+    containerRegistryType: 'Azure Container Registry'
