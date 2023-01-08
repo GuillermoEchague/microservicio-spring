@@ -1,39 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring-boot-k8s
+  name: petclinic-deployment
   labels:
-    app: tarea-devops
-  namespace: spring
+    app: pet-clinic
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tarea-devops
+      app: pet-clinic
   template:
     metadata:
       labels:
-        app: tarea-devops
-      
+        app: pet-clinic
     spec:
       containers:
-      - name: tarea-devops
-        image: echaguiller/tarea-devops:4
+      - name: pet-clinic
+        image: echaguiller/tarea-devops:latest
         ports:
-        - containerPort: 8080
-
----
-
-apiVersion: apps/v1
-kind: Service
-metadata:
-  name: mi-servicio-spring
-  namespace: spring  
-spec:
-  selector:
-    app: tarea-devops
-  ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
-  type: ClusterIP
+        - containerPort: 8085
