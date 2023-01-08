@@ -62,7 +62,7 @@ steps:
     containerRegistry: 'docker-tarea'
     repository: 'echaguiller/tarea-devops'
     command: 'build'
-    Dockerfile: 
+    Dockerfile: '**/Dockerfile'
   displayName: Docker Build Image
 
 - task: Docker@2
@@ -70,6 +70,7 @@ steps:
     containerRegistry: 'docker-tarea'
     repository: 'echaguiller/tarea-devops'
     command: 'push'
+    Dockerfile: '**/Dockerfile'
   displayName: Docker Push
 
 - task: KubectlInstaller@0
