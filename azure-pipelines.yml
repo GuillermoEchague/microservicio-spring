@@ -6,8 +6,8 @@
 trigger:
 - feature-ms-guillermoEchague-DevOpsConfigurationJava
 
-pool:
-  vmImage: ubuntu-latest
+pool: 'Default'
+#  vmImage: ubuntu-latest
 
 steps:
 - task: Gradle@3
@@ -57,5 +57,4 @@ steps:
     namespace: 'default'
     command: 'apply'
     arguments: '-f deployment.yaml'
-    secretType: 'dockerRegistry'
-    containerRegistryType: 'Azure Container Registry'
+    
