@@ -11,6 +11,18 @@ pool:
 
 steps:
 
+- task: Gradle@3
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: false
+    spotBugsAnalysis: false
+  displayName: Build Project
+
+
 
 - task: SonarCloudPrepare@1
   inputs:
@@ -34,7 +46,8 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: true
-    sqGradlePluginVersionChoice: 'build'
+    sqGradlePluginVersionChoice: 'specify'
+    sonarQubeGradlePluginVersion: '3.3'
     spotBugsAnalysis: false
   displayName: SonarCloud Analysis
 
@@ -44,4 +57,38 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
 
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker-tarea'
+    command: 'login'
+  displayName: Docker Login
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker-tarea'
+    repository: 'echaguiller/tarea-devops'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+  displayName: Docker Build Image
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker-tarea'
+    repository: 'echaguiller/tarea-devops'
+    command: 'push'
+    Dockerfile: '**/Dockerfile'
+  displayName: Docker Push
+
+- task: KubectlInstaller@0
+  inputs:
+    kubectlVersion: 'latest'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'None'
+    namespace: 'default'
+    command: 'apply'
+    arguments: '-f deployment.yaml'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
     
