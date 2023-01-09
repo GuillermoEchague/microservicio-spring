@@ -21,35 +21,7 @@ steps:
     spotBugsAnalysis: false
   displayName: Build Project
 
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'SonarCloud'
-    organization: 'guillermoechague'
-    scannerMode: 'Other'
-    extraProperties: |
-      # Additional properties that will be passed to the scanner,
-      # Put one key=value per line, example:
-      # sonar.exclusions=**/*.bin
-      sonar.projectKey=guillermoechague_tarea-devops-foundation
-      sonar.projectName=tarea-devops-foundation
-  displayName: Prepare SonarCloud Analysis
 
-- task: Maven@4
-  inputs:
-    mavenPomFile: 'pom.xml'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: true
-    sqMavenPluginVersionChoice: 'latest'
-  displayName: SonarCloud Analysis
-
-- task: SonarCloudPublish@1
-  inputs:
-    pollingTimeoutSec: '300'
 
 - task: Docker@2
   inputs:
@@ -81,8 +53,9 @@ steps:
 - task: Kubernetes@1
   inputs:
     connectionType: 'Kubernetes Service Connection'
-    kubernetesServiceEndpoint: 'devops-usach'
+    kubernetesServiceEndpoint: 'kubernets'
     namespace: 'default'
     command: 'apply'
     arguments: '-f deployment.yaml'
-    secretType: 'generic'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
