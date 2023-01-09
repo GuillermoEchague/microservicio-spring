@@ -37,10 +37,10 @@ steps:
   displayName: Prepare SonarCloud Analysis
 
 
-- task: Gradle@3
+- task: Gradle@2
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'sonarqube'
+    tasks: 'build'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
