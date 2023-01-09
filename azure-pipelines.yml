@@ -37,16 +37,17 @@ steps:
   displayName: Prepare SonarCloud Analysis
 
 
-- task: Gradle@2
+- task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
     tasks: 'build'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
+    codeCoverageToolOption: 'Cobertura'
+    codeCoverageClassFilesDirectories: 'build/classes/main/'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: true
-    sqGradlePluginVersionChoice: 'specify'
-    sonarQubeGradlePluginVersion: '3.3'
+    sqGradlePluginVersionChoice: 'build'
     spotBugsAnalysis: false
   displayName: SonarCloud Analysis
 
