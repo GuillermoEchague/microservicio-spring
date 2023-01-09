@@ -6,8 +6,8 @@
 trigger:
 - feature-ms-guillermoEchague-DevOpsConfigurationJava
 
-pool:
-  vmImage: ubuntu-latest
+pool: 'Default' 
+  #vmImage: ubuntu-latest
 
 steps:
 - task: Gradle@3
@@ -77,6 +77,7 @@ steps:
   inputs:
     kubectlVersion: 'latest'
 
+
 - task: Kubernetes@1
   inputs:
     connectionType: 'None'
@@ -85,3 +86,4 @@ steps:
     arguments: '-f deployment.yaml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
+    

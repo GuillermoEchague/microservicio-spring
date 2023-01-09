@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3a7ebdb4cf655cafe6f3ee115936a9da05fb393b
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
@@ -20,5 +23,3 @@ spec:
         image: echaguiller/tarea-devops:latest
         ports:
         - containerPort: 8080
-
-
