@@ -36,8 +36,7 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: true
-    sqGradlePluginVersionChoice: 'specify'
-    sonarQubeGradlePluginVersion: '3.3'
+    sqGradlePluginVersionChoice: 'build'
     spotBugsAnalysis: false
   displayName: SonarCloud Analysis
 
