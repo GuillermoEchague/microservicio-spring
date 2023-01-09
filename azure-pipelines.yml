@@ -77,11 +77,6 @@ steps:
   inputs:
     kubectlVersion: 'latest'
 
-- task: Kubernetes@1
-  inputs:
-    connectionType: 'None'
-    namespace: 'default'
-    command: 'login'
 
 - task: Kubernetes@1
   inputs:
