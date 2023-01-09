@@ -6,8 +6,8 @@
 trigger:
 - feature-ms-guillermoEchague-DevOpsConfigurationJava
 
-pool: 'Default'
-#  vmImage: ubuntu-latest
+pool: 
+  vmImage: ubuntu-latest
 
 steps:
 - task: Gradle@3
