@@ -21,38 +21,6 @@ steps:
     spotBugsAnalysis: false
   displayName: Build Project
 
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'SonarCloud'
-    organization: 'guillermoechague'
-    scannerMode: 'Other'
-    extraProperties: |
-      # Additional properties that will be passed to the scanner,
-      # Put one key=value per line, example:
-      # sonar.exclusions=**/*.bin
-      sonar.projectKey=guillermoechague_tarea-devops-foundation
-      sonar.projectName=tarea-devops-foundation
-  displayName: Prepare SonarCloud Analysis
-
-
-- task: Gradle@3
-  inputs:
-    gradleWrapperFile: 'gradlew'
-    tasks: 'build'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    sonarQubeRunAnalysis: true
-    sqGradlePluginVersionChoice: 'specify'
-    sonarQubeGradlePluginVersion: '2.6.1'
-    spotBugsAnalysis: false
-  displayName: SonarCloud Analysis
-
-
-
-- task: SonarCloudPublish@1
-  inputs:
-    pollingTimeoutSec: '300'
 
 - task: Docker@2
   inputs:
@@ -79,7 +47,6 @@ steps:
 - task: KubectlInstaller@0
   inputs:
     kubectlVersion: 'latest'
-
 
 - task: Kubernetes@1
   inputs:
