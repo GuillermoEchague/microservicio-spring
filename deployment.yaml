@@ -1,21 +1,21 @@
-apiVersion: apps/v1
+apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: petclinic-deployment
+  name: spring-deployment
   labels:
-    app: pet-clinic
+    app: spring-devops
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pet-clinic
+      app: spring-devops
   template:
     metadata:
       labels:
-        app: pet-clinic
+        app: spring-devops
     spec:
       containers:
-      - name: pet-clinic
+      - name: spring-deployment
         image: echaguiller/tarea-devops:latest
         ports:
         - containerPort: 8080
