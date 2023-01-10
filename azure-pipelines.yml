@@ -56,8 +56,8 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(Build.SourcesDirectory)/build/reports/cobertura/test/coverage.xml'
-    pathToSources: '$(Build.SourcesDirectory)/**/reports/cobertura/test/html'
+    summaryFileLocation: '**/TEST-*.xml'
+    pathToSources: 'build/classes/main/'
   displayName: Pruebas Unitarias
   
 - task: SonarCloudPublish@1
