@@ -57,6 +57,36 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
 
+
+stages:
+  - stage: Build
+    displayName: Build stage
+    jobs:
+      - job: CodeCoverage
+        displayName: Code Coverage
+        pool:
+          vmImage: 'ubuntu-16.04'
+
+        steps:
+          - task: Maven@3
+            displayName: 'Maven Test'
+            inputs:
+              mavenPomFile: 'pom.xml'
+              goals: 'test'
+
+          - task: PublishTestResults@2
+            displayName: 'Publish test results'
+            inputs:
+              testResultsFormat: 'JUnit'
+              mergeTestResults: true # Optional
+
+          - task: PublishCodeCoverageResults@1
+            displayName: 'Publish publish code coverage'
+            inputs:
+              summaryFileLocation: $(System.DefaultWorkingDirectory)/target/site/jacoco/jacoco.xml
+              pathToSources: $(System.DefaultWorkingDirectory)/src/main/java/
+
+
 - task: Docker@2
   inputs:
     containerRegistry: 'docker-tarea'
