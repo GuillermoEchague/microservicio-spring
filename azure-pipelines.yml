@@ -58,7 +58,8 @@ steps:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: '$(Build.SourcesDirectory)/build/reports/cobertura/test/coverage.xml'
     pathToSources: '$(Build.SourcesDirectory)/**/reports/cobertura/test/html'
-
+  displayName: Pruebas Unitarias
+  
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
