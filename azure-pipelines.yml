@@ -102,10 +102,12 @@ steps:
 
 - task: Kubernetes@1
   inputs:
-    connectionType: 'None'
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'kubernets'
     namespace: 'default'
     command: 'apply'
     arguments: '-f deployment.yaml'
     secretType: 'dockerRegistry'
-    containerRegistryType: 'Azure Container Registry'    
+    containerRegistryType: 'Azure Container Registry'
+    forceUpdateConfigMap: true
 
