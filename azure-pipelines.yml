@@ -50,7 +50,9 @@ steps:
     sonarQubeRunAnalysis: true
     sqGradlePluginVersionChoice: 'specify'
     sonarQubeGradlePluginVersion: '3.3'
-    spotBugsAnalysis: false
+    spotBugsAnalysis: true
+    spotBugsGradlePluginVersionChoice: 'specify'
+    spotbugsGradlePluginVersion: '4.7.0'
   displayName: SonarCloud Analysis
 
 - task: PublishCodeCoverageResults@1
