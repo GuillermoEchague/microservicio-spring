@@ -30,13 +30,14 @@ steps:
       sonar.projectName=tarea-devops-foundation
   displayName: Prepare SonarCloud Analysis
 
-
-
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'build'
-    publishJUnitResults: false
+    tasks: 'Sonarqube'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    codeCoverageToolOption: 'JaCoCo'
+    codeCoverageClassFilesDirectories: 'build/classes/main/'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     sonarQubeRunAnalysis: true
