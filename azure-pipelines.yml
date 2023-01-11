@@ -41,8 +41,11 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     sonarQubeRunAnalysis: true
-    sqGradlePluginVersionChoice: 'build'
-    spotBugsAnalysis: false
+    sqGradlePluginVersionChoice: 'specify'
+    sonarQubeGradlePluginVersion: '3.3'
+    spotBugsAnalysis: true
+    spotBugsGradlePluginVersionChoice: 'specify'
+    spotbugsGradlePluginVersion: '4.7.0'
   displayName: SonarCloud Analysis
 - task: Docker@2
   inputs:
