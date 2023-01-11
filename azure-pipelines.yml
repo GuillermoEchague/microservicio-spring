@@ -6,8 +6,8 @@
 trigger:
 - feature-ms-guillermoEchague-DevOpsConfigurationJava
 
-pool: 
-  vmImage: ubuntu-latest
+pool: 'Default'
+  #vmImage: ubuntu-latest
 
 steps:
 
@@ -22,47 +22,6 @@ steps:
     spotBugsAnalysis: false
   displayName: Build Project
 
-
-
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'SonarCloud'
-    organization: 'guillermoechague'
-    scannerMode: 'Other'
-    extraProperties: |
-      # Additional properties that will be passed to the scanner,
-      # Put one key=value per line, example:
-      # sonar.exclusions=**/*.bin
-      sonar.projectKey=guillermoechague_tarea-devops-foundation
-      sonar.projectName=tarea-devops-foundation
-  displayName: Prepare SonarCloud Analysis
-
-
-- task: Gradle@3
-  inputs:
-    gradleWrapperFile: 'gradlew'
-    tasks: 'sonarqube'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    sonarQubeRunAnalysis: true
-    sqGradlePluginVersionChoice: 'specify'
-    sonarQubeGradlePluginVersion: '3.3'
-    spotBugsAnalysis: true
-    spotBugsGradlePluginVersionChoice: 'specify'
-    spotbugsGradlePluginVersion: '4.7.0'
-  displayName: SonarCloud Analysis
-
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '**/TEST-*.xml'
-    pathToSources: 'build/classes/main/'
-  displayName: Pruebas Unitarias
-  
-- task: SonarCloudPublish@1
-  inputs:
-    pollingTimeoutSec: '300'
 
 
 - task: Docker@2
