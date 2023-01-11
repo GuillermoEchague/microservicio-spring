@@ -1,16 +1,10 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
 trigger:
 - feature-ms-guillermoEchague-DevOpsConfigurationJava
 
-pool: 'Default'
+pool: 'Default' 
   #vmImage: ubuntu-latest
 
 steps:
-
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
@@ -49,15 +43,7 @@ steps:
 - task: KubectlInstaller@0
   inputs:
     kubectlVersion: 'latest'
-  displayName: Instalacion Kubectl
-      
-- task: Kubernetes@1
-  inputs:
-    connectionType: 'Kubernetes Service Connection'
-    kubernetesServiceEndpoint: 'kubernets'
-    namespace: 'default'
-    command: 'login'
-  displayName: AKS Login
+
 
 - task: Kubernetes@1
   inputs:
@@ -67,5 +53,4 @@ steps:
     arguments: '-f deployment.yaml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
-    forceUpdateConfigMap: true
-
+    
