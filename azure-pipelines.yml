@@ -31,7 +31,6 @@ steps:
   displayName: Prepare SonarCloud Analysis
 
 
-- task: SonarCloudAnalyze@1
 
 - task: Gradle@3
   inputs:
