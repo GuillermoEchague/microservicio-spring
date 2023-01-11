@@ -14,10 +14,10 @@ spec:
       labels:
         app: spring-devops
     spec:
-      serviceAccount: sa1
+      # serviceAccount: sa1
       containers:
       - name: spring-deployment
         image: echaguiller/tarea-devops:latest
         ports:
-        - containerPort: 8085
+        - containerPort: 8080
         imagePullPolicy: Always
