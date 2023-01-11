@@ -36,15 +36,12 @@ steps:
   inputs:
     gradleWrapperFile: 'gradlew'
     tasks: 'build'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
+    publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
-    sonarQubeRunAnalysis: true
-    sqGradlePluginVersionChoice: 'specify'
-    sonarQubeGradlePluginVersion: '3.3'
+    sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
-
+  displayName: SonarCloud Analysis
 - task: Docker@2
   inputs:
     containerRegistry: 'docker-tarea'
