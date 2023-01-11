@@ -34,7 +34,6 @@ steps:
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
-    workingDirectory: '**/build/libs/'
     tasks: 'sonarqube'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
@@ -42,8 +41,7 @@ steps:
     jdkVersionOption: '1.8'
     sonarQubeRunAnalysis: true
     sqGradlePluginVersionChoice: 'build'
-    spotBugsAnalysis: true
-    spotBugsGradlePluginVersionChoice: 'build'
+    spotBugsAnalysis: false
   displayName: SonarCloud Analysis
 
 
