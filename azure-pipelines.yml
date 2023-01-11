@@ -30,27 +30,15 @@ steps:
       sonar.projectName=tarea-devops-foundation
   displayName: Prepare SonarCloud Analysis
 
-- task: Maven@4
-  inputs:
-    mavenPomFile: 'pom.xml'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: true
-    sqMavenPluginVersionChoice: 'pom'
+
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
     tasks: 'sonarqube'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
+    publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
-    sonarQubeRunAnalysis: true
-    sqGradlePluginVersionChoice: 'build'
+    sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
   displayName: SonarCloud Analysis
 
