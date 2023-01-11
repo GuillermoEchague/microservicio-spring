@@ -19,5 +19,5 @@ spec:
       - name: spring-deployment
         image: echaguiller/tarea-devops:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 8085
         imagePullPolicy: Always
