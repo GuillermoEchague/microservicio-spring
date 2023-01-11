@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Config
+current-context: 
+contexts:
+- name: 
+  context:
+    cluster: 
+    user: devops-cluster-admin
+clusters:
+- name: 
+  cluster:
+    certificate-authority-data: 
+    server: 
+users:
+- name: devops-cluster-admin
+  user:
+    token: 
