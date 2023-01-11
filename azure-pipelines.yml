@@ -39,7 +39,8 @@ steps:
     publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
-    sonarQubeRunAnalysis: false
+    sonarQubeRunAnalysis: true
+    sqGradlePluginVersionChoice: 'build'
     spotBugsAnalysis: false
   displayName: SonarCloud Analysis
 - task: Docker@2
