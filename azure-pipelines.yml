@@ -31,7 +31,7 @@ steps:
   displayName: Prepare SonarCloud Analysis
 
 
-
+- task: SonarCloudAnalyze@1
 
 - task: Docker@2
   inputs:
